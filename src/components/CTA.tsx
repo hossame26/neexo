@@ -8,49 +8,51 @@ import Link from "next/link";
 
 export default function CTA() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section className="section">
+    <section className="py-24 bg-white">
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-4xl mx-auto text-center relative"
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-4xl mx-auto px-6"
       >
-        {/* Background glow */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/20 via-purple-500/20 to-pink-500/20 blur-3xl -z-10 rounded-full" />
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-12 text-center text-white relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
-        <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6">
-          Pret a simplifier
-          <br />
-          <span className="gradient-text">votre gestion ?</span>
-        </h2>
+          <div className="relative z-10">
+            <h2 className="text-4xl font-bold mb-4">
+              Pret a simplifier votre gestion ?
+            </h2>
+            <p className="text-xl text-white/90 mb-8 max-w-xl mx-auto">
+              Rejoignez les artisans qui gagnent du temps chaque jour avec Neexo.
+            </p>
 
-        <p className="text-xl text-[var(--muted)] mb-10 max-w-xl mx-auto">
-          Rejoignez les artisans qui gagnent du temps chaque jour avec Neexo. Gratuit pour commencer.
-        </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/inscription"
+                className="bg-white text-orange-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2"
+              >
+                Commencer gratuitement
+                <ArrowRight size={18} />
+              </Link>
+              <Link
+                href="mailto:contact@neexo.fr"
+                className="text-white/90 hover:text-white font-medium"
+              >
+                Nous contacter
+              </Link>
+            </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/inscription"
-            className="btn-primary flex items-center gap-2 text-lg px-8 py-4"
-          >
-            Commencer gratuitement
-            <ArrowRight size={20} />
-          </Link>
-          <Link
-            href="mailto:contact@neexo.fr"
-            className="btn-secondary text-lg"
-          >
-            Nous contacter
-          </Link>
+            <p className="text-sm text-white/70 mt-6">
+              Pas de carte bancaire requise
+            </p>
+          </div>
         </div>
-
-        <p className="text-sm text-[var(--muted)] mt-8">
-          Pas de carte bancaire requise • Configuration en 2 minutes
-        </p>
       </motion.div>
     </section>
   );
